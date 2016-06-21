@@ -1,0 +1,76 @@
+body {
+    margin-top: 50px; 
+    color: #000;
+}
+
+body.welcome {
+  background: url("../images/wallpaper.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body.welcome .play {
+  background: transparent;
+  position: absolute;
+  text-align: center;
+  margin-left: 60%;
+  margin-top: 20%;
+  color: #ffffff;
+}
+
+body.game {
+  background: url("../images/play.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%;
+}
+
+body.game .name {
+  position: relative;
+  text-align: center;
+  background: transparent;
+  margin-top: 15%;
+  margin-bottom: 15%;
+  margin-right: -10px;
+  color: #fff;
+}
+
+body.game .name input {
+  color: #000;
+}
+
+img {
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  width: 100px;
+  height: 120px;
+  margin: 10px;
+}
+
+#left_side {
+  margin-top: 10%;
+  width: 28%;
+  float: left;
+}
+
+#right_side {
+  margin-top: 10%;
+  width: 28%;
+  float: right;
+}
+
+#hit_form {
+  float: left;
+  margin-left: 160px;
+  margin-top: 10px;
+}
+
+#stay_form {
+  float: right;
+  margin-right: 160px;
+  margin-top: 10px;
+}
