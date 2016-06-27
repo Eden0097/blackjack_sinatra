@@ -1,0 +1,10 @@
+ <body class="game">
+    <div class='name'>
+      <h4><%= session[:player_name]%>, you currently have $<%= session[:money] %></h4>
+      <form action="/new_bet" method="post">
+        <input type="text" class="form-group" name="player_bet"/>
+        <br/>
+        <input type="submit" class="btn btn-lg" value='Make a Bet'/>
+      </form>
+    </div>
+  </body>

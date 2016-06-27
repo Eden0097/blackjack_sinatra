@@ -1,4 +1,4 @@
-<body class="game">
+<body class="game" id='game'>
    <div id="left_side" class="well">
     <h5><%= session[:player_name]%>'s' Hand:</h5>
       <% session[:player_cards].each do |card| %>
@@ -39,4 +39,10 @@
       </form>
     <% end %>
   </p>
+
+  <% if @result %>
+    <form id="play_again" action="/play_again" method='get'>
+      <input type="submit" class="btn btn-success btn-lg" value="Play Again" />
+    </form>
+  <% end %>
 </body>
