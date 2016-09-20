@@ -5,6 +5,7 @@
         <%= card_image(card) %>
       <% end %>
     <h5>Total: <%= calculate_total(session[:player_cards]) %></h5>
+    <h5> You have $<%=session[:money]%> and made a bet of $<%=session[:player_bet]%> this round</h5>
    </div>
 
    <div id="right_side" class="well">

@@ -7,6 +7,7 @@ use Rack::Session::Cookie, :key => 'rack.session',
 
 BLACKJACK_AMOUNT = 21
 DEALER_MIN_HIT = 17
+INITIAL_POT = 500
 
 helpers do
   def calculate_total(cards) # cards is [["H", "3"], ["D", "J"], ... ]
@@ -101,7 +102,7 @@ post '/new_player' do
   end
   
   session[:player_name] = params[:player_name]
-  session[:money] = 500
+  session[:money] = INITIAL_POT
   redirect '/new_bet'
 end
 
@@ -111,11 +112,11 @@ end
 
 post '/new_bet' do
   params[:player_bet] = params[:player_bet].to_i
-  if params[:player_bet] > session[:money] || params[:player_bet] == 0
+  if params[:player_bet] > session[:money] || params[:player_bet] == 0 
     @error = "Please enter a valid bet amount"
     halt erb(:new_bet)
   else
-  session[:player_bet] = params[:player_bet]
+  session[:player_bet] = params[:player_bet].to_i
   redirect '/game'
   end
 end
@@ -154,14 +155,14 @@ post '/game/player/hit' do
 end
 
 get '/game/result' do
-  player_total = calculate_total(session[:player_cards])
-  if player_total == BLACKJACK_AMOUNT
-    win_bet
-    winner!("#{session[:player_name]} hit blackjack!")
-  elsif player_total > BLACKJACK_AMOUNT
-    lose_bet
-    loser!("It looks like #{session[:player_name]} busted at #{player_total}.")
-  end
+    player_total = calculate_total(session[:player_cards])
+    if player_total == BLACKJACK_AMOUNT
+      win_bet
+      winner!("#{session[:player_name]} hit blackjack!")
+    elsif player_total > BLACKJACK_AMOUNT
+      lose_bet
+      loser!("It looks like #{session[:player_name]} busted at #{player_total}.")
+    end
 
   erb :game
 end
@@ -221,7 +222,7 @@ get '/game/compare' do
 end
 
 get '/play_again' do
-  if session[:money] == 0
+  if session[:money] <= 0
     redirect '/bankrupt'
   else
     redirect '/new_bet'
